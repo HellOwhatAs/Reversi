@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+        <style>
+            :root{
+                --cols: 20;
+                --cursor: url(./black.cur);
+            }
+            #grid-container {
+                display: grid;
+                grid-column-gap: 1vh;
+                grid-row-gap: 1vh;
+                grid-template-columns: repeat(var(--cols), 1fr);
+                width: 90vh;
+            }
+            .grid-item {
+                width: 100%;
+                height: 0;
+                padding-bottom: 100%;
+                border-color: darkgray;
+                border-style: dotted;
+                border-radius: 100%;
+                text-align: center;
+                line-height: calc((90vh - 1vh * (var(--cols) - 1)) / var(--cols));
+            }
+            body{
+                cursor: var(--cursor), auto;
+            }
+        </style>
+    </head>
+    <body onload="brython();" style="background-color: lightgray;">
+        <div id="grid-container"></div>
+        <script type="text/python" src="./main.py"></script>
+    </body>
+</html>
