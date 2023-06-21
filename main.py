@@ -1,6 +1,7 @@
 from typing import List, Tuple, Iterable
 from itertools import product
 from copy import deepcopy
+# brython
 from browser import document, window, alert
 from browser.html import DIV
 
@@ -53,10 +54,7 @@ class Solution:
         if not able: return
         self.chessboard = new_chessboard
         self.round = not self.round
-        if self.round:
-            document.documentElement.style.setProperty('--cursor', "url(./white.cur)")
-        else:
-            document.documentElement.style.setProperty('--cursor', "url(./black.cur)")
+        document.documentElement.style.setProperty('--cursor', "url(./white.cur)" if self.round else "url(./black.cur)")
         self.render()
 
     def render(self):
@@ -77,7 +75,7 @@ class Solution:
         self.round = False
 
 n = window.location.search[1:]
-if not n: n = 10
+if not n: n = 8
 row_num = col_num = int(n)
 document.documentElement.style.setProperty('--cols', col_num)
 chessboard = Solution([['.' for _ in range(col_num)] for _ in range(row_num)])
