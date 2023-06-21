@@ -55,9 +55,13 @@ class Solution:
         self.chessboard = new_chessboard
         self.round = not self.round
         document.documentElement.style.setProperty('--cursor', "url(./white.cur)" if self.round else "url(./black.cur)")
-        self.render()
+        if not self.render():
+            self.round = not self.round
+            document.documentElement.style.setProperty('--cursor', "url(./white.cur)" if self.round else "url(./black.cur)")
+            self.render()
 
     def render(self):
+        any_able = False
         for i in range(self.m):
             for j in range(self.n):
                 items[i][j].text = ''
@@ -68,6 +72,8 @@ class Solution:
                 if able:
                     items[i][j].text = str(able)
                     items[i][j].style = "border-color: green;"
+                    any_able = True
+        return any_able
     
     def __init__(self, chessboard):
         self.m, self.n = len(chessboard), len(chessboard[0])
